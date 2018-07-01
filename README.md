@@ -107,7 +107,13 @@ Hello World
 
 ### Test the microservice on a remote machine with no java installed
 
-Transfer microservices to machine with Java. I happen have a coreos based VM:
+Let's tar up the microservice folder
+~~~
+cd microservices
+tar -czvf helloworld.tar.gz helloworld/
+~~~
+
+Transfer microservice to machine without Java. I happen have a coreos based VM:
 ~~~
 scp helloworld.tar.gz coreos@192.168.122.10:/home/coreos
 Password:
@@ -141,6 +147,7 @@ java  keytool
 
 ~~~
 ./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
+
 Hello World
 ~~~
 
