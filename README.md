@@ -101,7 +101,7 @@ Go to the microservice helloworld bin directory. Ensure you are using `./java` n
 
 ~~~
 cd microservices/helloworld/bin/
-./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
+./java -m helloworld/helloworld.HelloWorld
 Hello World
 ~~~
 
@@ -146,12 +146,12 @@ java  keytool
 ~~~
 
 ~~~
-./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
+./java -m helloworld/helloworld.HelloWorld
 
 Hello World
 ~~~
 
-## Simple AppServer
+## Simple HelloWorld Server
 
 Compile the server
 ~~~
@@ -159,7 +159,7 @@ cd app2
 javac -d mods/simpleserver/ src/module-info.java src/simpleserver/*.java
 ~~~
 
-Start in background
+Start in background and test
 ~~~
 java --module-path mods -m simpleserver/simpleserver.Main &
 curl -i http://localhost:4250/helloworld
@@ -169,6 +169,44 @@ Stop the server
 ~~~
 fg
 CTRL C
+~~~
+
+Package as a microservice
+~~~
+jlink --module-path mods --add-modules simpleserver,java.base --output microservices/simpleserver
+cd microservices
+tar -czvf simpleserver.tar.gz simpleserver/
+~~~
+
+## Simple AppServer
+
+Compile the server
+~~~
+cd app3
+javac -d mods/simplewebsrv/ src/module-info.java src/simplewebsrv/*.java
+~~~
+
+Start in background and test
+~~~
+java --module-path mods -m simplewebsrv/simplewebsrv.SimpleWebSrv &
+
+curl -i http://localhost:9000/
+curl -i http://localhost:9000/echoHeader
+curl -i http://localhost:9000/echoGet
+curl -i http://localhost:9000/echoGet?foo=bar
+~~~
+
+Stop the server
+~~~
+fg
+CTRL C
+~~~
+
+Package as a microservice
+~~~
+jlink --module-path mods --add-modules simplewebsrv,java.base --output microservices/simplewebsrv
+cd microservices
+tar -czvf simplewebsrv.tar.gz simplewebsrv/
 ~~~
 
 ## Links

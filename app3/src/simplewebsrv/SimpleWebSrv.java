@@ -1,4 +1,4 @@
-package simpleserver;
+package simplewebsrv;
 
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
