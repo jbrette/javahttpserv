@@ -97,7 +97,7 @@ jlink --module-path mods --add-modules helloworld,java.base --output microservic
 
 ### Test the microservice on the local machine 
 
-Go to the microservice helloworld bin directory. Ensure you are using `./java` and `java`
+Go to the microservice helloworld bin directory. Ensure you are using `./java` not `java`
 
 ~~~
 cd microservices/helloworld/bin/
