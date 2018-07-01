@@ -131,12 +131,13 @@ mv helloworld.tar.gz microservices/
 cd microservices/
 tar -xf helloworld.tar.gz
 cd helloworld/bin/
-~~
+~~~
 
-~~
+~~~
 ls
+
 java  keytool
-~~
+~~~
 
 ~~~
 ./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
