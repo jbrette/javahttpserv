@@ -1,5 +1,7 @@
-# javahttpserv
-Java 10 Simple HTTP Serv
+# Java 10 Simple HTTP Server
+
+- Main goal is to use Java 9/10 to create a microservice
+- Second goaln is to update the code to replace System.out.println(HelloWorld) into a web server
 
 ## Check java version
 
@@ -87,6 +89,7 @@ java --module-path mods -m helloworld/helloworld.HelloWorld
 ## Simplistic HelloWorld project using modules for microservices purpose (embeded JRE)
 
 ### Build the microservice on the local machine 
+
 ~~~
 mkdir microservices
 jlink --module-path mods --add-modules helloworld,java.base --output microservices/helloworld
@@ -95,6 +98,7 @@ jlink --module-path mods --add-modules helloworld,java.base --output microservic
 ### Test the microservice on the local machine 
 
 Go to the microservice helloworld bin directory. Ensure you are using `./java` and `java`
+
 ~~~
 cd microservices/helloworld/bin/
 ./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
@@ -127,6 +131,7 @@ mv helloworld.tar.gz microservices/
 cd microservices/
 tar -xf helloworld.tar.gz
 cd helloworld/bin/
+~~
 
 ~~
 ls
@@ -137,7 +142,6 @@ java  keytool
 ./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
 Hello World
 ~~~
-
 
 ## Links
 
