@@ -157,7 +157,7 @@ Compile the server
 ~~~
 cd app2
 javac -d mods/simpleserver/ src/module-info.java src/simpleserver/*.java
-~~
+~~~
 
 Start in background
 ~~~
