@@ -173,5 +173,6 @@ CTRL C
 
 ## Links
 
-- [openjdk](http://openjdk.java.net/projects/jigsaw/quick-start)
-- [app2][http://www.adam-bien.com/roller/abien/entry/a_built_in_java_httpserver)
+- [app1](http://openjdk.java.net/projects/jigsaw/quick-start)
+- [app2](http://www.adam-bien.com/roller/abien/entry/a_built_in_java_httpserver)
+- [app3](https://www.codeproject.com/Tips/1040097/Create-a-Simple-Web-Server-in-Java-HTTP-Server)
