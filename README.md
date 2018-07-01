@@ -17,7 +17,7 @@ javac --version
 javac 10.0.1
 ~~~
 
-## Very very basic HelloWorld project
+## Simplistic HelloWorld project using Classical mode
 
 First step is to understand module, jlink...to be able to build an App 
 suitable for microservices, IOT and Kubernetes
@@ -29,27 +29,116 @@ cd app1
 
 Verify the presence of the source code
 ~~~
-ls src/app1
+ls src/helloworld
 
 HelloWorld.java
 ~~~
 
 Compile the source java code
 ~~~
-javac -d classes src/app1/*.java
+javac -d classes src/helloworld/*.java
 ~~~
 
 Check javac call worked
 ~~~
-ls classes/app1/
+ls classes/helloworld/
 
 HelloWorld.class
 ~~~
 
 Let's run the simplistic application using the classical way
 ~~~
-java --class-path classes app1.HelloWorld
+java --class-path classes helloworld.HelloWorld
 
 Hello World
 ~~~
 
+## Simplistic HelloWorld project using classical Jar files
+
+Let's package the code as a jar file
+~~~
+mkdir jars
+cd classes
+jar cvf ../jars/helloworld.jar helloworld/
+cd ..
+~~~
+
+~~~
+java --class-path jars/helloworld.jar helloworld.HelloWorld
+~~~
+
+## Simplistic HelloWorld project using Java 9 modules
+
+Get into the simplistic application directory
+~~~
+cd app1
+~~~
+
+Compile the source java code
+~~~
+javac -d mods/helloworld/ src/module-info.java src/helloworld/HelloWorld.java
+~~~
+
+Let's run the simplistic application using the java-module way
+~~~
+java --module-path mods -m helloworld/helloworld.HelloWorld
+~~~
+
+## Simplistic HelloWorld project using modules for microservices purpose (embeded JRE)
+
+### Build the microservice on the local machine 
+~~~
+mkdir microservices
+jlink --module-path mods --add-modules helloworld,java.base --output microservices/helloworld
+~~~
+
+### Test the microservice on the local machine 
+
+Go to the microservice helloworld bin directory. Ensure you are using `./java` and `java`
+~~~
+cd microservices/helloworld/bin/
+./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
+Hello World
+~~~
+
+### Test the microservice on a remote machine with no java installed
+
+Transfer microservices to machine with Java. I happen have a coreos based VM:
+~~~
+scp helloworld.tar.gz coreos@192.168.122.10:/home/coreos
+Password:
+helloworld.tar.gz                                                                                                                               100%   16MB  16.0MB/s   00:00
+~~~
+
+~~~
+ssh coreos@192.168.122.10
+Password:
+Last login: Sun Jul  1 18:34:37 UTC 2018 from 192.168.122.7 on ssh
+Container Linux by CoreOS stable (1745.7.0)
+Update Strategy: No Reboots
+
+java
+-bash: java: command not found
+~~~
+
+~~~
+mkdir microservices
+mv helloworld.tar.gz microservices/
+cd microservices/
+tar -xf helloworld.tar.gz
+cd helloworld/bin/
+
+~~
+ls
+java  keytool
+~~
+
+~~~
+./java -m helloworld/helloworld.HelloWorld helloworld/helloworld.HelloWorld
+Hello World
+~~~
+
+
+## Links
+
+- [openjdk](http://openjdk.java.net/projects/jigsaw/quick-start)
