@@ -151,6 +151,27 @@ java  keytool
 Hello World
 ~~~
 
+## Simple AppServer
+
+Compile the server
+~~~
+cd app2
+javac -d mods/simpleserver/ src/module-info.java src/simpleserver/*.java
+~~
+
+Start in background
+~~~
+java --module-path mods -m simpleserver/simpleserver.Main &
+curl -i http://localhost:4250/helloworld
+~~~
+
+Stop the server
+~~~
+fg
+CTRL C
+~~~
+
 ## Links
 
 - [openjdk](http://openjdk.java.net/projects/jigsaw/quick-start)
+- [app2][http://www.adam-bien.com/roller/abien/entry/a_built_in_java_httpserver)
