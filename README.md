@@ -2,6 +2,7 @@
 
 - Main goal is to use Java 9/10 to create a microservice
 - Second goaln is to update the code to replace System.out.println(HelloWorld) into a web server
+- Third goal: Integrate with Travis-CI
 
 ## Check java version
 
